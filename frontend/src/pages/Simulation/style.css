@@ -1,0 +1,213 @@
+.simulation-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.simulation-container .ant-card {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  margin-bottom: var(--spacing-lg);
+}
+
+.simulation-container .ant-card-head {
+  background: var(--bg-tertiary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+.simulation-container .ant-typography {
+  color: var(--text-primary) !important;
+}
+
+.simulation-container .ant-typography-secondary {
+  color: var(--text-secondary) !important;
+}
+
+.loading-container {
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Steps Styling */
+.simulation-container .ant-steps {
+  color: var(--text-primary) !important;
+}
+
+.simulation-container .ant-steps-item-title {
+  color: var(--text-primary) !important;
+  font-weight: 500;
+}
+
+.simulation-container .ant-steps-item-description {
+  color: var(--text-secondary) !important;
+}
+
+.simulation-container .ant-steps-item-wait .ant-steps-item-icon {
+  background: var(--bg-tertiary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.simulation-container .ant-steps-item-wait .ant-steps-item-icon > .ant-steps-icon {
+  color: var(--text-muted) !important;
+}
+
+.simulation-container .ant-steps-item-process .ant-steps-item-icon {
+  background: var(--accent-primary) !important;
+  border-color: transparent !important;
+  box-shadow: 0 0 10px rgba(24, 144, 255, 0.3);
+}
+
+.simulation-container .ant-steps-item-finish .ant-steps-item-icon {
+  background: var(--bg-secondary) !important;
+  border-color: var(--success) !important;
+}
+
+.simulation-container .ant-steps-item-finish .ant-steps-item-icon > .ant-steps-icon {
+  color: var(--success) !important;
+}
+
+/* Progress Bar */
+.simulation-container .ant-progress-bg {
+  background: var(--accent-primary) !important;
+}
+
+.simulation-container .ant-progress-inner {
+  background: var(--bg-tertiary) !important;
+}
+
+/* Tabs Styling */
+.simulation-container .ant-tabs-nav {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.simulation-container .ant-tabs-tab {
+  color: var(--text-secondary) !important;
+  transition: all var(--transition-fast);
+}
+
+.simulation-container .ant-tabs-tab:hover {
+  color: var(--accent-primary) !important;
+}
+
+.simulation-container .ant-tabs-tab-active {
+  color: var(--accent-primary) !important;
+}
+
+.simulation-container .ant-tabs-ink-bar {
+  background: var(--accent-primary) !important;
+}
+
+/* Collapse Styling */
+.simulation-container .ant-collapse {
+  background: transparent !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.simulation-container .ant-collapse-header {
+  color: var(--text-primary) !important;
+  font-weight: 500;
+}
+
+.simulation-container .ant-collapse-content {
+  background: var(--bg-tertiary) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+/* List Styling */
+.simulation-container .ant-list {
+  color: var(--text-primary) !important;
+}
+
+.simulation-container .ant-list-item {
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.simulation-container .ant-list-item-meta-title {
+  color: var(--text-primary) !important;
+}
+
+.simulation-container .ant-list-item-meta-description {
+  color: var(--text-secondary) !important;
+}
+
+/* Tag Styling */
+.simulation-container .ant-tag {
+  border: none;
+  font-weight: 500;
+}
+
+/* Entity Type Colors - Light Theme */
+.entity-tag-country {
+  background: rgba(24, 144, 255, 0.1) !important;
+  color: #1890ff !important;
+}
+
+.entity-tag-organization {
+  background: rgba(82, 196, 26, 0.1) !important;
+  color: #52c41a !important;
+}
+
+.entity-tag-non_state_actor {
+  background: rgba(250, 173, 20, 0.1) !important;
+  color: #faad14 !important;
+}
+
+.entity-tag-international_org {
+  background: rgba(114, 46, 209, 0.1) !important;
+  color: #722ed1 !important;
+}
+
+/* Graph Container */
+.graph-container {
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+}
+
+/* Alert Styling */
+.simulation-container .ant-alert-success {
+  background: rgba(82, 196, 26, 0.1) !important;
+  border: 1px solid rgba(82, 196, 26, 0.3) !important;
+}
+
+.simulation-container .ant-alert-error {
+  background: rgba(245, 34, 45, 0.1) !important;
+  border: 1px solid rgba(245, 34, 45, 0.3) !important;
+}
+
+/* Pre-entities Card Special Styling */
+.pre-entities-card {
+  border-left: 4px solid var(--accent-primary) !important;
+}
+
+.expanded-queries-card {
+  border-left: 4px solid var(--accent-secondary) !important;
+}
+
+/* Animation for new content */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.new-content {
+  animation: slideIn 0.4s ease forwards;
+}

@@ -1,0 +1,64 @@
+vmType: qemu
+arch: aarch64
+
+images:
+  - location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-arm64.img"
+    arch: "aarch64"
+  - location: "https://cloud-images.ubuntu.com/releases/22.04/release/ubuntu-22.04-server-cloudimg-amd64.img"
+    arch: "x86_64"
+
+cpus: 4
+memory: 8GiB
+disk: 50GiB
+
+mounts:
+  - location: "/Users/huangyongzhuo/.qoderwork/workspace/mmk7l7pjbb0g7wz4/outputs/geopolitical-simulation"
+    writable: true
+
+portForwards:
+  - guestPort: 8000
+    hostPort: 8000
+  - guestPort: 3000
+    hostPort: 3000
+  - guestPort: 5432
+    hostPort: 5432
+  - guestPort: 6379
+    hostPort: 6379
+
+provision:
+  - mode: system
+    script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      if ! command -v docker &> /dev/null; then
+        export DEBIAN_FRONTEND=noninteractive
+        apt-get update
+        apt-get install -y ca-certificates curl gnupg lsb-release
+        mkdir -p /etc/apt/keyrings
+        curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+        apt-get update
+        apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+        usermod -aG docker ${LIMA_CIDATA_USER:-ubuntu}
+      fi
+      if ! command -v docker-compose &> /dev/null; then
+        curl -L "https://github.com/docker/compose/releases/download/v2.23.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        chmod +x /usr/local/bin/docker-compose
+      fi
+
+probes:
+  - script: |
+      #!/bin/bash
+      set -eux -o pipefail
+      if ! timeout 30s bash -c "until command -v docker &> /dev/null; do sleep 3; done"; then
+        echo >&2 "Docker is not installed yet"
+        exit 1
+      fi
+      docker info > /dev/null 2>&1
+    hint: "Docker is not running. Please wait..."
+
+message: |
+  地缘政治推演系统 Lima 虚拟机已启动！
+  访问地址：
+    - API文档: http://localhost:8000/docs
+    - 前端: http://localhost:3000

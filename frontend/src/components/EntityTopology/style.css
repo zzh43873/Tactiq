@@ -1,0 +1,230 @@
+.entity-topology-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.entity-topology-container .ant-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  overflow: hidden;
+}
+
+/* 过滤器区域 */
+.topology-filters {
+  padding: 12px 16px;
+  background: #f6ffed;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #b7eb8f;
+}
+
+.topology-filters .ant-checkbox-wrapper {
+  margin-right: 8px;
+}
+
+.topology-filters .ant-tag {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.topology-filters .ant-tag:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+/* 图例区域 */
+.topology-legend {
+  padding: 8px 16px;
+  background: #e6f7ff;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #91caff;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-line {
+  width: 30px;
+  height: 2px;
+  background: #1890ff;
+}
+
+.legend-line.solid {
+  background: #1890ff;
+}
+
+.legend-line.dashed {
+  background: repeating-linear-gradient(
+    to right,
+    #ff4d4f,
+    #ff4d4f 5px,
+    transparent 5px,
+    transparent 10px
+  );
+  height: 2px;
+}
+
+.legend-line.arrow {
+  background: #1890ff;
+  position: relative;
+}
+
+.legend-line.arrow::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid #1890ff;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+.legend-line.animated {
+  background: #52c41a;
+  animation: pulse-line 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-line {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* 关系图区域 */
+.topology-graph {
+  flex: 1;
+  min-height: 500px;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* 实体节点样式 */
+.topology-entity-node {
+  transition: all 0.3s ease;
+}
+
+.topology-entity-node:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.entity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.entity-name {
+  font-size: 14px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entity-meta {
+  margin-bottom: 8px;
+}
+
+.relevance-bar {
+  width: 100%;
+  height: 4px;
+  background: #f0f0f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.relevance-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.entity-interests {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .topology-filters {
+    padding: 8px;
+  }
+
+  .topology-filters .ant-row {
+    flex-direction: column;
+  }
+
+  .topology-legend {
+    padding: 8px;
+  }
+
+  .topology-legend .ant-space {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .topology-graph {
+    min-height: 400px;
+  }
+}
+
+/* React Flow 自定义样式 */
+.topology-graph .react-flow__node {
+  border: none;
+  background: transparent;
+}
+
+.topology-graph .react-flow__edge-path {
+  stroke-linecap: round;
+}
+
+.topology-graph .react-flow__edge-text {
+  font-size: 10px;
+  fill: #666;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.topology-graph .react-flow__edge-textbg {
+  fill: rgba(255, 255, 255, 0.8);
+}
+
+.topology-graph .react-flow__minimap {
+  background: #fafafa;
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+}
+
+/* 确保多条边能够正确显示 */
+.topology-graph .react-flow__edge {
+  pointer-events: all;
+}
+
+.topology-graph .react-flow__edge:hover {
+  cursor: pointer;
+}
+
+/* 维度颜色类 */
+.dimension-political { color: #1890ff; }
+.dimension-security { color: #ff4d4f; }
+.dimension-economic { color: #52c41a; }
+.dimension-social { color: #faad14; }
+.dimension-ideological { color: #722ed1; }
+.dimension-geostrategic { color: #13c2c2; }

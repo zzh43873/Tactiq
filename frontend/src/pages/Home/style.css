@@ -1,0 +1,157 @@
+.home-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.welcome-card {
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+  padding: var(--spacing-xl);
+}
+
+.welcome-card h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.welcome-card .ant-typography-secondary {
+  color: var(--text-secondary) !important;
+  font-size: 1.1rem;
+}
+
+.input-card {
+  margin-bottom: var(--spacing-lg);
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.input-card .ant-card-head {
+  background: var(--bg-tertiary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+.input-card textarea {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.input-card textarea:hover,
+.input-card textarea:focus {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2) !important;
+}
+
+.input-card .ant-input-data-count {
+  color: var(--text-muted) !important;
+}
+
+.examples-card {
+  margin-bottom: var(--spacing-lg);
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.examples-card .ant-card-head {
+  background: var(--bg-tertiary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+.examples-card button {
+  color: var(--accent-primary) !important;
+  transition: all var(--transition-fast);
+}
+
+.examples-card button:hover {
+  color: var(--accent-secondary) !important;
+  background: rgba(24, 144, 255, 0.05) !important;
+}
+
+.history-card {
+  margin-bottom: var(--spacing-lg);
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.history-card .ant-card-head {
+  background: var(--bg-tertiary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+.history-card .ant-table {
+  background: transparent !important;
+}
+
+.history-card .ant-table-thead > tr > th {
+  background: var(--bg-tertiary) !important;
+  color: var(--text-secondary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  font-weight: 500;
+}
+
+.history-card .ant-table-tbody > tr > td {
+  background: transparent !important;
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+.history-card .ant-table-tbody > tr:hover > td {
+  background: rgba(24, 144, 255, 0.05) !important;
+}
+
+/* Primary Button Styling */
+.ant-btn-primary {
+  background: var(--accent-primary) !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(24, 144, 255, 0.3) !important;
+  transition: all var(--transition-fast) !important;
+}
+
+.ant-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(24, 144, 255, 0.4) !important;
+}
+
+.ant-btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Alert Styling */
+.ant-alert-info {
+  background: rgba(24, 144, 255, 0.1) !important;
+  border: 1px solid rgba(24, 144, 255, 0.3) !important;
+  color: var(--text-primary) !important;
+}
+
+.ant-alert-message {
+  color: var(--text-primary) !important;
+  font-weight: 600;
+}
+
+.ant-alert-description {
+  color: var(--text-secondary) !important;
+}

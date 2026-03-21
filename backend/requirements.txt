@@ -1,0 +1,45 @@
+# Web Framework
+fastapi==0.110.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.9
+
+# Agent Framework
+langgraph>=0.0.50,<0.1.0
+langchain>=0.1.20,<0.2.0
+langchain-openai>=0.1.0,<0.2.0
+langchain-community>=0.0.38,<0.1.0
+
+# LLM Clients
+openai==1.12.0
+anthropic==0.18.0
+
+# Database
+sqlalchemy==2.0.25
+asyncpg==0.29.0
+alembic==1.13.1
+
+# Cache & Queue
+redis==5.0.1
+celery==5.3.6
+
+# Validation & Serialization
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# HTTP Clients
+httpx==0.26.0
+aiohttp==3.9.1
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.3
+
+# Utilities
+loguru==0.7.2
+python-dotenv==1.0.0
+tenacity==8.2.3
+orjson>=3.9.14
+
+# Testing
+pytest==7.4.4
+pytest-asyncio==0.23.3
