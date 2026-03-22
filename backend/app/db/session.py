@@ -1,5 +1,6 @@
 """
 数据库会话管理
+支持 SQLite (aiosqlite) 和 PostgreSQL (asyncpg)
 """
 
 from typing import AsyncGenerator
@@ -9,13 +10,19 @@ from sqlalchemy.orm import sessionmaker
 from app.config import settings
 
 
+# 数据库URL，支持 SQLite 和 PostgreSQL
+DATABASE_URL = settings.DATABASE_URL
+# 如果使用 SQLite，确保使用 aiosqlite 驱动
+if DATABASE_URL.startswith("sqlite:") and not DATABASE_URL.startswith("sqlite+aiosqlite:"):
+    DATABASE_URL = DATABASE_URL.replace("sqlite:", "sqlite+aiosqlite:", 1)
+
 # 创建异步引擎
 engine: AsyncEngine = create_async_engine(
-    settings.DATABASE_URL,
+    DATABASE_URL,
     echo=settings.DEBUG,  # 调试模式下打印SQL
     pool_pre_ping=True,   # 连接池健康检查
-    pool_size=10,
-    max_overflow=20
+    # SQLite 不需要连接池配置
+    **({"pool_size": 10, "max_overflow": 20} if "postgresql" in DATABASE_URL else {})
 )
 
 # 创建异步会话工厂

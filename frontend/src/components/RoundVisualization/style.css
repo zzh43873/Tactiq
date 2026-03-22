@@ -1,0 +1,235 @@
+/**
+ * Round Visualization Component Styles
+ */
+
+.round-visualization-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.round-visualization-card .ant-card-head {
+  background: linear-gradient(135deg, #fff7e6 0%, #ffe7ba 100%);
+  border-bottom: 1px solid #ffd591;
+}
+
+.round-stats {
+  display: flex;
+  gap: 8px;
+}
+
+.rounds-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Round Card Styles */
+.round-card {
+  transition: all 0.3s ease;
+}
+
+.round-card.active {
+  border: 2px solid #1890ff;
+  box-shadow: 0 0 20px rgba(24, 144, 255, 0.2);
+}
+
+.round-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.round-title {
+  margin: 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.round-progress {
+  margin-bottom: 16px;
+}
+
+.round-tabs {
+  margin-top: 16px;
+}
+
+/* Decisions Grid */
+.decisions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+}
+
+/* Decision Card Styles */
+.decision-card {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.decision-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.decision-card.decided {
+  border-color: #52c41a;
+}
+
+.decision-card.debating {
+  border-color: #1890ff;
+  animation: pulse-card 2s infinite;
+}
+
+@keyframes pulse-card {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(24, 144, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(24, 144, 255, 0);
+  }
+}
+
+.decision-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.decision-summary {
+  padding: 8px 0;
+}
+
+.decision-pending {
+  padding: 16px 0;
+}
+
+/* Debate Container Styles */
+.debate-container {
+  background: #f5f5f5;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.debate-sides {
+  display: flex;
+  gap: 16px;
+}
+
+.debate-side {
+  flex: 1;
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  border: 2px solid;
+}
+
+.debate-side.hawk {
+  border-color: #ff4d4f;
+}
+
+.debate-side.hawk .debate-icon {
+  color: #ff4d4f;
+}
+
+.debate-side.dove {
+  border-color: #52c41a;
+}
+
+.debate-side.dove .debate-icon {
+  color: #52c41a;
+}
+
+.debate-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.debate-icon {
+  font-size: 20px;
+}
+
+.debate-title {
+  font-size: 14px;
+}
+
+.debate-content {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.debate-divider {
+  height: auto;
+  margin: 0;
+}
+
+/* Final Decision Styles */
+.final-decision {
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+.decision-content {
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.decision-action {
+  display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.decision-reasoning {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+/* Round Timeline Styles */
+.round-timeline {
+  padding: 16px;
+}
+
+.round-timeline .ant-timeline-item {
+  padding-bottom: 16px;
+}
+
+.reasoning-detail {
+  background: #f5f5f5;
+  padding: 12px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+
+/* Situation Summary */
+.situation-summary {
+  margin-top: 16px;
+  padding: 16px;
+  background: #e6f7ff;
+  border-radius: 8px;
+  border: 1px solid #91d5ff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .debate-sides {
+    flex-direction: column;
+  }
+  
+  .debate-divider {
+    display: none;
+  }
+  
+  .decisions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .round-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

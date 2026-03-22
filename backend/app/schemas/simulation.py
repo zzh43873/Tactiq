@@ -50,7 +50,8 @@ class SimulationConfig(BaseModel):
     dimensions: List[Dimension] = Field(
         default=[Dimension.ECONOMIC, Dimension.MILITARY, Dimension.DIPLOMATIC, Dimension.PUBLIC_OPINION]
     )
-    max_rounds: int = Field(default=5, ge=1, le=10)
+    max_rounds: int = Field(default=3, ge=1, le=10)
+    max_entities: int = Field(default=12, ge=1, le=20, description="Maximum number of entities to identify")
 
 
 class SimulationRequest(BaseModel):
@@ -209,3 +210,67 @@ class SimulationList(BaseModel):
     total: int
     page: int
     page_size: int
+
+
+# ── New entity-game schemas ───────────────────────────────────────────────────
+
+class GeopoliticalInput(BaseModel):
+    """Input schema for the new entity-game simulation pipeline."""
+    proposition: str = Field(
+        ...,
+        description="地缘政治命题，可以是一条现有政策、新闻事件或假设性情景",
+        examples=[u"特朗普宣布出动地面部队攻击伊朗"]
+    )
+    config: SimulationConfig = Field(default_factory=SimulationConfig)
+
+
+class EntityReactionSchema(BaseModel):
+    """An entity's predicted reaction across multiple dimensions."""
+    military: str = Field(default="", description="军事行动预测")
+    diplomatic: str = Field(default="", description="外交反应预测")
+    economic: str = Field(default="", description="经济措施预测")
+    energy: str = Field(default="", description="能源/资源相关反应")
+    public_opinion: str = Field(default="", description="舆论/媒体策略")
+    rationale: str = Field(default="", description="决策依据")
+    confidence: float = Field(default=0.6, ge=0.0, le=1.0, description="置信度")
+
+
+class EntityInfo(BaseModel):
+    """A geopolitical entity identified from the proposition."""
+    name: str
+    name_en: str = ""
+    entity_type: str = Field(default="country", description="country/non_state_actor/organization/market")
+    role: str = Field(default="stakeholder", description="initiator/target/ally/adversary/stakeholder/proxy")
+    relevance_score: float = Field(default=0.5, ge=0.0, le=1.0)
+    initial_stance: str = ""
+
+
+class SimulationRoundResult(BaseModel):
+    """Results of one round of parallel entity decisions."""
+    round_number: int
+    global_summary: str = ""
+    entity_reactions: Dict[str, EntityReactionSchema] = Field(default_factory=dict)
+
+
+class FinalReportSchema(BaseModel):
+    """Comprehensive final output of the entity-game simulation."""
+    entities: Dict[str, EntityReactionSchema] = Field(
+        default_factory=dict,
+        description="Per-entity consolidated reactions"
+    )
+    key_turning_points: List[str] = Field(default_factory=list)
+    escalation_risk: float = Field(default=0.5, ge=0.0, le=1.0)
+    most_likely_scenario: str = ""
+    alternative_scenarios: List[str] = Field(default_factory=list)
+    timeline: Dict[str, List[str]] = Field(
+        default_factory=lambda: {"short": [], "medium": [], "long": []}
+    )
+    early_warning_indicators: List[str] = Field(default_factory=list)
+
+
+class GeopoliticalSimulationResult(BaseModel):
+    """Full result of the entity-game simulation pipeline."""
+    proposition: str
+    entities_identified: List[EntityInfo] = Field(default_factory=list)
+    simulation_rounds: List[SimulationRoundResult] = Field(default_factory=list)
+    final_report: FinalReportSchema = Field(default_factory=FinalReportSchema)

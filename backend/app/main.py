@@ -1,7 +1,7 @@
 """
-FastAPI应用主入口
+Tactiq - 地缘政治推演系统
+FastAPI 应用主入口 - 新架构版本
 """
-
 import sys
 from pathlib import Path
 
@@ -9,18 +9,13 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-# 确保backend目录在路径中
-backend_root = Path(__file__).parent
-if str(backend_root) not in sys.path:
-    sys.path.insert(0, str(backend_root))
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 
-from app.api.v1 import simulation, intelligence, entities, reports, websocket, demo
 from app.config import settings
 from app.db import init_db, close_db
+from app.api.v1 import simulation, intelligence, entities, reports, websocket, demo
 
 # 配置日志
 logger.add(
@@ -34,8 +29,8 @@ logger.add(
 # 创建FastAPI应用
 app = FastAPI(
     title=settings.APP_NAME,
-    description="地缘政治推演系统 API - 基于多Agent技术的战略推演平台",
-    version="0.1.0",
+    description="地缘政治推演系统 API - 基于领域驱动设计的新架构",
+    version="1.0.0",
     debug=settings.DEBUG,
     docs_url="/docs",
     redoc_url="/redoc"
@@ -75,14 +70,12 @@ app.include_router(
     tags=["报告"]
 )
 
-# 注册WebSocket路由
 app.include_router(
     websocket.router,
     prefix="/api/v1",
     tags=["WebSocket"]
 )
 
-# 注册演示场景路由
 app.include_router(
     demo.router,
     prefix="/api/v1/demo",
@@ -95,9 +88,10 @@ async def root():
     """根路径"""
     return {
         "message": "Tactiq System API",
-        "version": "0.1.0",
-        "description": "基于多Agent技术的地缘政治推演系统",
+        "version": "1.0.0",
+        "description": "基于领域驱动设计的地缘政治推演系统",
         "docs": "/docs",
+        "architecture": "Domain-Driven Design",
         "endpoints": {
             "simulation": "/api/v1/simulation",
             "intelligence": "/api/v1/intelligence",
@@ -113,7 +107,8 @@ async def health_check():
     return {
         "status": "healthy",
         "environment": settings.APP_ENV,
-        "version": "0.1.0"
+        "version": "1.0.0",
+        "architecture": "new"
     }
 
 
@@ -121,6 +116,7 @@ async def health_check():
 async def startup_event():
     """应用启动事件"""
     logger.info(f"Starting {settings.APP_NAME} in {settings.APP_ENV} mode")
+    logger.info("Architecture: Domain-Driven Design")
     
     # 初始化数据库
     try:
@@ -128,7 +124,6 @@ async def startup_event():
         logger.info("Database initialized successfully")
     except Exception as e:
         logger.error(f"Failed to initialize database: {e}")
-        # 开发环境下不阻断启动
         if settings.is_production:
             raise
 

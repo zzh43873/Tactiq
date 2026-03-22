@@ -204,3 +204,77 @@ async def publish_progress(task_type: str, task_id: str, progress_data: dict):
         
     except Exception as e:
         logger.error(f"Failed to publish progress: {e}")
+
+
+# 节点执行事件发布函数
+async def publish_node_event(
+    task_type: str,
+    task_id: str,
+    event_type: str,  # 'node_started', 'node_completed', 'node_error'
+    node_name: str,
+    data: dict = None
+):
+    """
+    发布节点执行事件
+    
+    用于可视化展示LangGraph节点执行流程
+    
+    Args:
+        task_type: 任务类型
+        task_id: 任务ID
+        event_type: 事件类型
+        node_name: 节点名称
+        data: 附加数据
+    """
+    try:
+        event_data = {
+            "type": "node_event",
+            "event_type": event_type,
+            "node_name": node_name,
+            "timestamp": asyncio.get_event_loop().time(),
+            "data": data or {}
+        }
+        
+        # 直接推送给已连接的WebSocket客户端
+        await manager.broadcast(task_type, task_id, event_data)
+        
+        # 同时发布到Redis供其他消费者
+        await task_storage.publish_progress(task_type, task_id, event_data)
+        
+    except Exception as e:
+        logger.error(f"Failed to publish node event: {e}")
+
+
+async def publish_round_event(
+    task_type: str,
+    task_id: str,
+    round_number: int,
+    event_type: str,  # 'round_started', 'debate_started', 'decision_made', 'round_completed'
+    data: dict = None
+):
+    """
+    发布推演轮次事件
+    
+    用于可视化展示鹰鸽辩论和决策过程
+    
+    Args:
+        task_type: 任务类型
+        task_id: 任务ID
+        round_number: 轮次编号
+        event_type: 事件类型
+        data: 附加数据（包含debate结果、decision等）
+    """
+    try:
+        event_data = {
+            "type": "round_event",
+            "event_type": event_type,
+            "round_number": round_number,
+            "timestamp": asyncio.get_event_loop().time(),
+            "data": data or {}
+        }
+        
+        await manager.broadcast(task_type, task_id, event_data)
+        await task_storage.publish_progress(task_type, task_id, event_data)
+        
+    except Exception as e:
+        logger.error(f"Failed to publish round event: {e}")

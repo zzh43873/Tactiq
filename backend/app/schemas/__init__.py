@@ -22,7 +22,13 @@ from .simulation import (
     Interaction,
     Action,
     RedTeamChallenge,
-    Synthesis
+    Synthesis,
+    GeopoliticalInput,
+    EntityReactionSchema,
+    EntityInfo,
+    SimulationRoundResult,
+    FinalReportSchema,
+    GeopoliticalSimulationResult,
 )
 
 __all__ = [
@@ -50,5 +56,11 @@ __all__ = [
     "Interaction",
     "Action",
     "RedTeamChallenge",
-    "Synthesis"
+    "Synthesis",
+    "GeopoliticalInput",
+    "EntityReactionSchema",
+    "EntityInfo",
+    "SimulationRoundResult",
+    "FinalReportSchema",
+    "GeopoliticalSimulationResult",
 ]

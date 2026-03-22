@@ -1,9 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import { Card, Spin, Alert, Steps, Typography, List, Tag, Progress, Collapse, Tabs } from 'antd'
-import { LoadingOutlined, CheckCircleOutlined, ClockCircleOutlined } from '@ant-design/icons'
+import { Card, Spin, Alert, Steps, Typography, List, Tag, Progress, Collapse, Tabs, Radio } from 'antd'
+import { LoadingOutlined, CheckCircleOutlined, ClockCircleOutlined, EyeOutlined, HistoryOutlined } from '@ant-design/icons'
 import ReactECharts from 'echarts-for-react'
 import CausalGraph from '../../components/CausalGraph'
+import SimulationWorkflow from '../../components/SimulationWorkflow'
+import ExecutionTimeline from '../../components/ExecutionTimeline'
+import RoundVisualization from '../../components/RoundVisualization'
+import { useSimulationStore } from '../../stores/simulationStore'
 import './style.css'
 
 const { Title, Text } = Typography
@@ -39,16 +43,32 @@ function Simulation() {
   const [progress, setProgress] = useState(0)
   const [status, setStatus] = useState('collecting')
   const [entities, setEntities] = useState<any[]>([])
-  const [relationships, setRelationships] = useState<any[]>([])
+  const setRelationships = useState<any[]>([])[1]
   const [preEntities, setPreEntities] = useState<any[]>([])  // 预识别实体
-  const [preRelationships, setPreRelationships] = useState<any[]>([])  // 预识别关系
+  const [, setPreRelationships] = useState<any[]>([])  // 预识别关系
   const [expandedQueries, setExpandedQueries] = useState<any[]>([])  // 扩展查询
   const [simulationResult, setSimulationResult] = useState<any>(null)  // 推演结果（包含因果路径）
   const [error, setError] = useState<string | null>(null)
+  const [activeVisualizationTab, setActiveVisualizationTab] = useState('workflow')
+  
+  // 使用Zustand store获取可视化状态
+  const {
+    nodeExecutionHistory,
+    roundHistory,
+    currentNode,
+    currentRound,
+    visualizationMode,
+    setVisualizationMode,
+    processExecutionEvent,
+    setSimulationStartTime,
+    setSimulationEndTime,
+    reset: resetVisualization
+  } = useSimulationStore()
   
   // 使用ref来跟踪轮询状态，避免闭包问题
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const isCompletedRef = useRef(false)
+  const wsRef = useRef<WebSocket | null>(null)
 
   // 轮询获取推演状态
   useEffect(() => {
@@ -202,6 +222,64 @@ function Simulation() {
       }
     }
   }, [id])
+
+  // WebSocket连接用于实时事件
+  useEffect(() => {
+    if (!id) return
+    
+    // 重置可视化状态
+    resetVisualization()
+    
+    // 建立WebSocket连接
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+    const wsUrl = `${protocol}//${window.location.host}/api/v1/ws/simulation/${id}`
+    
+    const ws = new WebSocket(wsUrl)
+    wsRef.current = ws
+    
+    ws.onopen = () => {
+      console.log('WebSocket connected for simulation:', id)
+    }
+    
+    ws.onmessage = (event) => {
+      try {
+        const message = JSON.parse(event.data)
+        
+        // 处理节点事件和轮次事件
+        if (message.type === 'node_event' || message.type === 'round_event') {
+          processExecutionEvent(message)
+        }
+        
+        // 处理进度更新
+        if (message.type === 'progress' || message.type === 'status') {
+          const data = message.data || message
+          if (data.status === 'running' && data.started_at) {
+            setSimulationStartTime(new Date(data.started_at).getTime())
+          }
+          if ((data.status === 'completed' || data.status === 'failed') && data.completed_at) {
+            setSimulationEndTime(new Date(data.completed_at).getTime())
+          }
+        }
+      } catch (e) {
+        console.error('Failed to parse WebSocket message:', e)
+      }
+    }
+    
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error)
+    }
+    
+    ws.onclose = () => {
+      console.log('WebSocket disconnected')
+    }
+    
+    return () => {
+      if (wsRef.current) {
+        wsRef.current.close()
+        wsRef.current = null
+      }
+    }
+  }, [id, resetVisualization, processExecutionEvent, setSimulationStartTime, setSimulationEndTime])
 
   const getStepStatus = (stepIndex: number) => {
     if (stepIndex < currentStep) return 'finish'
@@ -571,6 +649,53 @@ function Simulation() {
             style={{ marginTop: 16 }}
           />
         )}
+
+        {/* 推演流程可视化 */}
+        <Card 
+          title="推演流程可视化" 
+          style={{ marginTop: 24 }}
+          extra={
+            <Radio.Group 
+              value={visualizationMode} 
+              onChange={(e) => setVisualizationMode(e.target.value)}
+              size="small"
+            >
+              <Radio.Button value="realtime">
+                <EyeOutlined /> 实时
+              </Radio.Button>
+              <Radio.Button value="summary">
+                <HistoryOutlined /> 汇总
+              </Radio.Button>
+            </Radio.Group>
+          }
+        >
+          <Tabs 
+            activeKey={activeVisualizationTab} 
+            onChange={setActiveVisualizationTab}
+            type="card"
+          >
+            <TabPane tab="流程图" key="workflow">
+              <SimulationWorkflow 
+                nodeStates={nodeExecutionHistory}
+                currentNode={currentNode}
+              />
+            </TabPane>
+            <TabPane tab="执行时间线" key="timeline">
+              <ExecutionTimeline 
+                nodeStates={nodeExecutionHistory}
+                rounds={roundHistory}
+                status={status === 'completed' ? 'completed' : status === 'failed' ? 'error' : 'running'}
+                error={error || undefined}
+              />
+            </TabPane>
+            <TabPane tab="推演轮次" key="rounds">
+              <RoundVisualization 
+                rounds={roundHistory}
+                currentRound={currentRound}
+              />
+            </TabPane>
+          </Tabs>
+        </Card>
 
         {/* 实体关系可视化 */}
         {entities.length > 0 && (

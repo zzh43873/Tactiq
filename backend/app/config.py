@@ -34,7 +34,8 @@ class Settings(BaseSettings):
     SECRET_KEY: str = Field(default="your-secret-key-change-in-production")
     
     # === 数据库配置 ===
-    DATABASE_URL: str = Field(default="postgresql+asyncpg://user:password@localhost:5432/geopolitics")
+    # 默认使用 SQLite，避免 asyncpg 编译问题
+    DATABASE_URL: str = Field(default="sqlite+aiosqlite:///./tactiq.db")
     DB_HOST: str = Field(default="localhost")
     DB_PORT: int = Field(default=5432)
     DB_USER: str = Field(default="user")

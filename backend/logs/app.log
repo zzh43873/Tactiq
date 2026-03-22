@@ -21120,3 +21120,98 @@
 2026-03-17 16:39:39.830 | INFO     | app.main:startup_event:128 - Database initialized successfully
 2026-03-17 16:39:44.540 | INFO     | app.main:shutdown_event:139 - Shutting down Tactiq System
 2026-03-17 16:39:44.543 | INFO     | app.main:shutdown_event:144 - Database connections closed
+2026-03-22 12:00:55.121 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 12:00:55.122 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 12:00:55.208 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 12:01:13.581 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 12:01:13.582 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 12:01:15.022 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 12:01:15.023 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 12:01:15.030 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 12:55:53.302 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 12:55:53.321 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 12:55:56.732 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 12:55:56.732 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 12:55:56.746 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 12:56:54.104 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 12:56:54.107 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 12:56:56.084 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 12:56:56.084 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 12:56:56.092 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 12:57:13.336 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 12:57:13.337 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 13:09:57.220 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 13:09:57.221 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 13:09:57.228 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 13:10:03.247 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 13:10:03.248 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 13:10:05.054 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 13:10:05.054 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 13:10:05.061 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 13:11:50.648 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 13:11:50.649 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 13:11:53.177 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 13:11:53.178 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 13:11:53.185 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 13:34:48.324 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 13:34:48.328 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 13:37:49.843 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 13:37:49.844 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 13:37:49.857 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:22:22.200 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:22:22.217 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:22:26.288 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:22:26.288 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:22:26.301 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:22:45.472 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:22:45.473 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:22:47.896 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:22:47.896 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:22:47.904 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:36:28.803 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:36:28.811 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:36:33.031 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:36:33.032 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:36:33.045 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:38:43.640 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:38:43.642 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:38:45.874 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:38:45.875 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:38:45.882 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:39:04.994 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:39:04.995 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:39:06.815 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:39:06.815 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:39:06.821 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:39:15.361 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:39:15.362 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:39:17.131 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:39:17.131 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:39:17.139 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:39:31.723 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:39:31.724 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:39:33.553 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:39:33.553 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:39:33.561 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:39:47.403 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:39:47.404 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:39:49.395 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:39:49.396 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:39:49.401 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 14:40:18.944 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 14:40:18.945 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 14:40:20.878 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 14:40:20.878 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 14:40:20.885 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 15:58:56.373 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 15:58:56.390 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 15:59:00.682 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 15:59:00.682 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 15:59:00.694 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 15:59:33.119 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 15:59:33.121 | INFO     | app.main:shutdown_event:139 - Database connections closed
+2026-03-22 15:59:37.287 | INFO     | app.main:startup_event:118 - Starting Tactiq System in development mode
+2026-03-22 15:59:37.287 | INFO     | app.main:startup_event:119 - Architecture: Domain-Driven Design
+2026-03-22 15:59:37.297 | INFO     | app.main:startup_event:124 - Database initialized successfully
+2026-03-22 15:59:57.179 | INFO     | app.main:shutdown_event:134 - Shutting down Tactiq System
+2026-03-22 15:59:57.180 | INFO     | app.main:shutdown_event:139 - Database connections closed
